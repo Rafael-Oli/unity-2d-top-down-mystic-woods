@@ -5,10 +5,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    // Speed, Collision and Filter
     public float moveSpeed = 1f;
     public float collisionOffset = 0.02f;
     public ContactFilter2D movementFilter;
+    public SwordAttack swordAttack;
 
     Vector2 movementInput;
     Rigidbody2D rb;
@@ -73,6 +73,26 @@ public class PlayerController : MonoBehaviour
 
     void OnMove(InputValue movementValue) {
         movementInput = movementValue.Get<Vector2>();
+    }
+
+    void OnFire() {
+        animator.SetTrigger("swordAttack");
+        print("ola");
+    }
+
+    public void SwordAttack() {
+        LockMovement();
+
+        if(spriteRenderer.flipX == true) {
+            swordAttack.AttackLeft();
+        } else {
+            swordAttack.AttackRight();
+        }
+    }
+
+    public void EndSwordAttack() {
+        UnlockMovement();
+        swordAttack.StopAttack();
     }
 
     public void LockMovement() {
