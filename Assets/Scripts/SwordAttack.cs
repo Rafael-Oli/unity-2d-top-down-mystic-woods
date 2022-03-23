@@ -24,4 +24,14 @@ public class SwordAttack : MonoBehaviour
     public void StopAttack() {
         swordCollider.enabled = false;
     }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if(other.tag == "Enemy") {
+            SlimeController slime = other.GetComponent<SlimeController>();
+
+            if(slime != null) {
+                slime.Health -= damage;
+            }
+        }
+    }   
 }

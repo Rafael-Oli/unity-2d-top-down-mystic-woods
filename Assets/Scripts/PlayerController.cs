@@ -77,7 +77,6 @@ public class PlayerController : MonoBehaviour
 
     void OnFire() {
         animator.SetTrigger("swordAttack");
-        print("ola");
     }
 
     public void SwordAttack() {
